@@ -42,14 +42,19 @@ import { App } from "./App.jsx";
 export const Parent = React.memo(props => {
     const [singleName] = React.useState("Одинокий Джо");
     const [manyNames] = React.useState(() => ["Игорь", "Илья"]);
-    const [uselessValue, setUselessValue] = React.useState(1);    
+    const [uselessValue, setUselessValue] = React.useState(1);
+    // const changeUselessValue = React.useRef(() => {
+    //     console.log("=== Вызываем Render у Parent (обновили state) ===");
+    //     setUselessValue(Math.random());
+    // });
 
-    console.log("Render Parent (React.memo)");
-
-    const changeUselessValue = () => {
-        console.log("=== Вызываем Render у Parent (обновили state) ===")
+    const changeUselessValue = React.useMemo(() => () => {
+        console.log("=== Вызываем Render у Parent (обновили state) ===");
         setUselessValue(Math.random());
-    };
+    }, []);
+
+    
+    console.log("Render Parent (React.memo)");
 
     return (
         <div>
