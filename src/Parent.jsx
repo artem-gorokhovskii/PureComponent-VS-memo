@@ -48,7 +48,7 @@ export const Parent = React.memo(props => {
     //     setUselessValue(Math.random());
     // });
 
-    const changeUselessValue = React.useMemo(() => () => {
+    const changeUselessValue = React.useCallback(() => {
         console.log("=== Вызываем Render у Parent (обновили state) ===");
         setUselessValue(Math.random());
     }, []);
