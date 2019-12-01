@@ -1,33 +1,37 @@
 import React from "react";
+import { connect } from "react-redux";
 import { SingleName } from "./SingleName";
 import { MultiNames } from "./MultiNames";
 
-// export class App extends React.PureComponent {
-//     render() {
-//         const { changeUselessValue, singleName, manyNames } = this.props;
-//         console.log("Render App (PureComponent)");
+class AppComponent extends React.Component {
+    render() {
+        const { changeUselessValue, singleName, manyNames } = this.props;
+        console.log("Render App (Component)");
         
-//         return (
-//             <>
-//                 <MultiNames names={manyNames} />
+        return (
+            <>
+                <MultiNames names={manyNames} />
 
-//                 <SingleName name={singleName} />
-//                 <button onClick={changeUselessValue}>change state</button>
-//             </>
-//         );
-//   }
-// }
+                <SingleName name={singleName} />
+                <button onClick={changeUselessValue}>change state</button>
+            </>
+        );
+  }
+}
 
-export const App = React.memo(props => {
-    console.log("Render App (React.memo)");
-    const { manyNames, singleName, changeUselessValue } = props;
+// export const App = connect()(AppComponent);
+export const App = AppComponent;
 
-    return (
-        <>
-            <MultiNames names={manyNames} />
+// export const App = connect()(props => {
+//     console.log("Render App (connect(Functional Component))");
+//     const { manyNames, singleName, changeUselessValue } = props;
 
-            <SingleName name={singleName} />
-            <button onClick={changeUselessValue}>change state</button>
-        </>
-    );
-});
+//     return (
+//         <>
+//             <MultiNames names={manyNames} />
+
+//             <SingleName name={singleName} />
+//             <button onClick={changeUselessValue}>change state</button>
+//         </>
+//     );
+// });
